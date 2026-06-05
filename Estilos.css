@@ -1,0 +1,443 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    background-color: #cabf9a;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN MODERNA (ESTILO SEAGRO)
+   ========================================================================== */
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN FIJA (SIEMPRE VISIBLE AL BAJAR)
+   ========================================================================== */
+
+.menu-navegacion {
+    background-color: #ffffff; /* Fondo blanco estilo Seagro */
+    padding: 15px 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra un poco más marcada para que resalte al flotar */
+    
+    /* 🚨 ESTAS TRES LÍNEAS HACEN LA MAGIA: */
+    position: fixed; /* Cambiamos a 'fixed' para obligarlo a quedarse flotando permanentemente */
+    top: 0;
+    left: 0;
+    width: 100%; /* Asegura que abarque todo el ancho de la pantalla */
+    
+    box-sizing: border-box; /* Evita que el padding extra estire la barra más allá de la pantalla */
+    z-index: 9999; /* Una capa altísima para que ningún video o mapa se monte encima del menú */
+    
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* Contenedor del Logo en el Nav */
+.nav-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-img {
+    height: 45px; /* Ajusta la altura para que se vea estilizado en la barra */
+    width: auto;
+}
+
+/* Contenedor de acciones del lado derecho */
+.nav-actions-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaciado uniforme entre los iconos y el menú */
+}
+
+/* Estilo para los botones de iconos (Lupa y Bolsa) */
+.nav-icon-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #555555;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.nav-icon-btn:hover {
+    color: #2e7d32; /* Tu color verde institucional */
+}
+
+/* Botón Hamburguesa Moderno (Texto + Icono) */
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la palabra "Menu" y las líneas */
+    background: none;
+    border: none;
+    color: #777777; /* Gris suave para el texto */
+    cursor: pointer;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.menu-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.menu-icon {
+    font-size: 24px;
+}
+
+/* En PC mantendremos ocultos los iconos de interacción si prefieres, 
+   o puedes borrar esta regla si quieres que salgan también en computadora */
+.nav-icon-btn, .menu-toggle {
+    display: flex; 
+}
+
+/* ==========================================================================
+   COMPORTAMIENTO DEL MENÚ DESPLEGABLE EN MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .menu-navegacion ul.menu-links {
+        display: none; /* Oculto por defecto */
+        flex-direction: column; 
+        width: 100%;
+        background-color: #ffffff; /* Mantenemos el fondo blanco en móvil */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu-navegacion ul.menu-links.mostrar {
+        display: flex; /* Se muestra al presionar 'Menu' */
+    }
+
+    .menu-navegacion li {
+        margin: 0;
+        width: 100%;
+    }
+
+    .menu-navegacion ul.menu-links a {
+        color: #333333; /* Texto oscuro para contrastar con el fondo blanco */
+        padding: 12px 25px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .menu-navegacion ul.menu-links a:hover {
+        background-color: #f5f5f5;
+        color: #2e7d32;
+    }
+}
+
+/* REGLA PARA PC: Si la pantalla es grande, esconde el botón de menú y expande la lista */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Oculta el botón 'Menu ☰' en monitores */
+    }
+
+    .menu-navegacion ul.menu-links {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .menu-navegacion ul.menu-links a {
+        color: #555555;
+    }
+}
+/* ==========================================================================
+   ESTILOS RESPONSIVOS PARA EL VIDEO DE BIENVENIDA (COMPUTADORA Y CELULAR)
+   ========================================================================== */
+
+/* Contenedor principal: Por defecto en computadoras mantiene el formato panorámico */
+.hero-video-seccion {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-color: #000000;
+    overflow: hidden;
+    margin-top: 75px;
+}
+
+/* El video se adapta al contenedor */
+.video-fondo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Muestra el video completo horizontal */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/* Capa translúcida oscura para mejorar la lectura de las letras */
+.capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.56); /* Un poco más oscura para fuentes legibles */
+    z-index: 2;
+}
+
+/* Capa interactiva que distribuye el logo arriba y letras abajo */
+.capa-interactiva {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.logo-superior {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo-hero {
+    max-width: 120px;
+    height: auto;
+    filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.6));
+}
+
+.contenido-inferior {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* El texto cambia a color blanco para que contraste con la capa oscura y no choque con el fondo */
+.contenido-inferior h1 {
+    font-size: 2rem;
+    color: #00ff00; 
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    font-weight: bold;
+}
+
+.contenido-inferior p {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+/* 📱 AJUSTES EXCLUSIVOS PARA TELÉFONOS CELULARES (Pantallas menores a 768px) */
+    @media (max-width: 768px) {
+    .hero-video-seccion {
+        /* En el celular quitamos la proporción fija para evitar que se estire infinitamente */
+        aspect-ratio: auto; 
+        height: 320px; /* Le asignamos una altura estática fija y controlada para pantallas verticales */
+        margin-top: 75px; /* Reducimos un poco el margen superior para que no se vea tan separado del menú en pantallas pequeñas */
+    }
+
+    .video-fondo {
+        /* Obligamos al video horizontal a encajar dentro del recuadro del celular sin salirse */
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cambia a cover solo en celular para rellenar el espacio estético sin romper el flujo de la web */
+    }
+
+    .logo-hero {
+        max-width: 90px; /* Reducimos un poco el tamaño del logo para pantallas pequeñas */
+    }
+
+    .contenido-inferior h1 {
+        font-size: 1.5rem; /* Letras más compactas para que no saturen el espacio en el teléfono */
+    }
+
+    .contenido-inferior p {
+        font-size: 0.99rem;
+    }
+}
+
+h1 {
+    color: green;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 95px;
+    margin: 70px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.clima-card {
+    background-color: #e8f5e9;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    border-left: 10px solid #2e7d32;
+}
+
+.datos-clima p {
+    font-size: 1.2rem;
+    color: #1b5e20;
+    margin: 5px 0;
+}
+
+.trazabilidad-qr {
+    background-color: #ffffff;
+    border: 2px dashed #2e7d32;
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.qr-container img {
+    border: 5px solid #f4f4f4;
+    padding: 10px;
+    background: white;
+}
+
+.nota-qr {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+.contacto-productores {
+    background-color: #f9f9f9;
+    padding: 25px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn.whatsapp {
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128c7e;
+}
+
+.formulario-visita {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0,1);
+    max-width: 500px;
+    text-align: left;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 5px;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-guardar {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.alertas-section {
+    background-color: #68cc6d;
+    border: 1px solid #f44336;
+    border-radius: 8px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.btn-alerta {
+    background-color: #d32f2f;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: black solid 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn-alerta:hover {
+    background-color: #b71c1c;
+}
+
+em {
+    color:blue;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 38px;
+    border: 5px solid red;
+    
+    padding: 5px 0;
+}
+
+/* 
+ * -------------------------------------------------------------
+ * © Copyright 2026 APROCAJER - Todos los derechos reservados.
+ * Proyecto: Sistema de Trazabilidad y Agricultura de Precisión
+ * Desarrollado por: Oscar David Mancia Rivera
+ * Prohibida su reproducción parcial o total sin autorización.
+ * -------------------------------------------------------------
+ */
+footer {
+    width: 100%;
+    padding: 3px 0px;
+    background-color: rgba(42, 35, 35, 0.6);
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+}
